@@ -1,0 +1,45 @@
+---
+// Las jornadas: fila 50/50 a sangre en banda crema; la foto (`imagen`) toca el borde izquierdo de la ventana con
+// su lado derecho en diagonal; al otro lado, titular, `texto` en párrafos, los ejes (`items: [{titulo, texto}]`
+// numerados 01, 02…) y `cta`. Sin imagen, el texto ocupa todo el ancho.
+import { seccion, parrafos, enlace } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const cta = enlace(s?.cta);
+const num = (i: number) => String(i + 1).padStart(2, '0');
+---
+
+{
+  s && (s.titulo || s.texto || s.items.length > 0) && (
+    <section id={Astro.props.id} class="banda banda--crema">
+      <div class:list={[s.imagen ? 'partida' : 'contenedor']}>
+        {s.imagen && (
+          <div class="partida-foto partida-foto--abajo">
+            <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={1400} />
+          </div>
+        )}
+        <div class:list={[s.imagen ? 'partida-texto' : 'seccion']}>
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} class="titular--compacto" />
+          <div class="max-w-[42rem] space-y-4 text-lg">
+            {parrafos(s.texto).map((p) => <p>{p}</p>)}
+          </div>
+          {s.items.length > 0 && (
+            <ul class="ejes">
+              {s.items.map((it, i) => (
+                <li>
+                  <span class="eje-num" aria-hidden="true">{num(i)}</span>
+                  <h3 class="mt-1 text-[1.4rem] tracking-tight">{it.titulo}</h3>
+                  {it.texto && <p class="suave mt-2">{it.texto}</p>}
+                </li>
+              ))}
+            </ul>
+          )}
+          {cta && <p class="mt-10"><a class="btn" href={cta.url}>{cta.texto}</a></p>}
+        </div>
+      </div>
+    </section>
+  )
+}

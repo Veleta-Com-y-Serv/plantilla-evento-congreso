@@ -1,0 +1,94 @@
+# Metadatos de la plantilla para el catálogo de NoExpertise.
+id: evento-congreso
+nombre: Evento y congreso
+descripcion: "Web festiva a todo el ancho para congresos, jornadas, ferias y festivales, con programa, ponentes y entradas."
+sectores:
+  - { id: evento, nombre: Evento }
+  - { id: congreso, nombre: Congreso }
+  - { id: feria, nombre: Feria }
+  - { id: festival, nombre: Festival }
+  - { id: jornadas, nombre: Jornadas }
+secciones:
+  - { id: hero, nombre: Portada }
+  - { id: cifras, nombre: Cifras }
+  - { id: sobre, nombre: El evento }
+  - { id: programa, nombre: Programa }
+  - { id: ponentes, nombre: Ponentes }
+  - { id: entradas, nombre: Entradas }
+  - { id: galeria, nombre: Galería }
+  - { id: lugar, nombre: El lugar }
+  - { id: patrocinadores, nombre: Patrocinadores }
+  - { id: preguntas, nombre: Preguntas frecuentes }
+  - { id: cta, nombre: Llamada a la acción }
+  - { id: contacto, nombre: Contacto }
+estilo: festivo
+plan_minimo: presencia
+version: 1.0.0
+base: astrowind
+demo_url: https://demo-plantilla-evento-congreso.noexpertise.com
+activa: true
+orden: 480
+
+# Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
+# tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+asistente:
+  - id: negocio
+    titulo: "Tu evento"
+    pregunta: "¿Cómo se llama tu evento, de qué trata, cuándo es y dónde se celebra?"
+    ayuda: "Congreso, jornadas, feria, festival… Di las fechas y el lugar tal como quieras que salgan en grande."
+    tipo: texto
+    campos: [nombre, eslogan, seo.titulo, seo.descripcion, secciones.hero.antetitulo, secciones.hero.titulo, secciones.hero.texto, secciones.hero.fecha, secciones.hero.lugar, secciones.hero.etiquetas]
+  - id: contacto
+    titulo: "Cómo te encuentran"
+    pregunta: "¿Cómo pueden contactar con la organización?"
+    ayuda: "Solo lo que quieras que vean los asistentes. Lo que dejes vacío no sale en tu web."
+    tipo: datos
+    campos: [contacto.telefono, contacto.whatsapp, contacto.email, contacto.direccion, contacto.horario, redes.instagram, redes.facebook, redes.linkedin]
+  - id: sobre
+    titulo: "El evento"
+    pregunta: "Cuéntame por qué existe tu evento, a quién va dirigido y de qué temas se habla."
+    tipo: texto
+    campos: [secciones.sobre.titulo, secciones.sobre.texto, secciones.sobre.items]
+  - id: programa
+    titulo: "El programa"
+    pregunta: "Dime las sesiones: día, hora, título y quién la da. Una por línea."
+    ayuda: "Si aún no está cerrado, salta este paso y añádelo luego en Contenido."
+    tipo: lista
+    campos: [secciones.programa.programa]
+  - id: ponentes
+    titulo: "Ponentes"
+    pregunta: "¿Quién participa? Nombre, a qué se dedica y de qué hablará. Uno por línea."
+    ayuda: "Las fotos de cada ponente se ponen luego en Contenido."
+    tipo: lista
+    campos: [secciones.ponentes.personas]
+  - id: entradas
+    titulo: "Entradas"
+    pregunta: "¿Qué tipos de entrada o inscripción hay? Nombre, qué incluye y el precio si quieres. Una por línea."
+    ayuda: "Si la venta es en otra web, pon su dirección en cada entrada desde Contenido."
+    tipo: lista
+    campos: [secciones.entradas.entradas]
+  - id: lugar
+    titulo: "El lugar"
+    pregunta: "¿Dónde se celebra y cómo se llega? Dirección y si se llega en tren, autobús, coche…"
+    tipo: texto
+    campos: [secciones.lugar.titulo, secciones.lugar.texto, secciones.lugar.direccion, secciones.lugar.items]
+  - id: preguntas
+    titulo: "Preguntas frecuentes"
+    pregunta: "¿Qué te preguntan siempre los asistentes? Escribe cada pregunta y lo que respondes."
+    ayuda: "Certificados, cambios de entrada, accesibilidad, grabaciones… Si lo prefieres, añádelas luego en Contenido."
+    tipo: lista
+    campos: [secciones.preguntas.preguntas]
+  - id: fotos
+    titulo: "Tus fotos"
+    pregunta: "Pon una foto de portada y, si quieres, las del lugar y de ediciones anteriores."
+    ayuda: "Sube las tuyas o elige una del banco. Las que no cambies se quedan como están."
+    tipo: fotos
+    campos: [secciones.hero.imagen, secciones.sobre.imagen, secciones.lugar.imagen, secciones.galeria.galeria]
+  - id: aspecto
+    titulo: "Colores y logo"
+    pregunta: "Elige los colores de tu web y, si tienes, tu logo."
+    tipo: eleccion
+    campos: [colores.primario, colores.acento, logo]
+  - id: repaso
+    titulo: "Repaso"
+    tipo: repaso

@@ -1,0 +1,33 @@
+---
+// Ponentes: titular en banda crema y, debajo, un mosaico de borde a borde sin márgenes (2/3/4 columnas) en el que
+// cada ponente es un bloque de color (cobalto, noche, violeta, rosa, por turnos) con la foto cortada en diagonal,
+// `nombre`, `cargo` y, en monoespaciada, `texto` (su charla). `personas: [{nombre, cargo, foto, texto}]`.
+// Sin foto, la silueta de /placeholders/persona.svg. Sin personas no se pinta.
+import { seccion, cadena } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const personas = (s?.personas ?? []).filter((p) => cadena(p.nombre));
+---
+
+{
+  s && personas.length > 0 && (
+    <Seccion id={Astro.props.id} class="banda--crema sin-abajo">
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} partido />
+      <ul class="ponentes" slot="sangre">
+        {personas.map((p) => (
+          <li class="ponente">
+            <Imagen src={cadena(p.foto) || '/placeholders/persona.svg'} alt={p.nombre} ancho={600} alto={750} class="ponente-foto" respaldo="/placeholders/persona.svg" />
+            <div class="ponente-pie">
+              <h3 class="ponente-nombre">{p.nombre}</h3>
+              {cadena(p.cargo) && <p class="ponente-cargo">{p.cargo}</p>}
+              {cadena(p.texto) && <p class="ponente-tema">— {p.texto}</p>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Seccion>
+  )
+}

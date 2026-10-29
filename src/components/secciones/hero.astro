@@ -1,0 +1,69 @@
+---
+// Portada a pantalla completa como un cartel: banda noche con la foto a sangre (a la derecha en escritorio, con el
+// borde en diagonal y un bloque cobalto y otro rosa; de fondo con velo en móvil), `antetitulo`, título enorme,
+// la `fecha` en un bloque rosa inclinado (las cifras en grande: «15—17» + «de abril de 2027»), el `lugar`,
+// `texto`, `cta` y `cta_secundario`. `etiquetas` (cadena con «;») pasa por debajo en una cinta cobalto inclinada.
+// Sin imagen quedan los bloques de color.
+import { seccion, enlace, cadena, partes, fechaCartel } from '../../data/site';
+import { altHero } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string; primera?: boolean }
+const { id, primera = false } = Astro.props;
+const s = seccion(id);
+const cta = enlace(s?.cta);
+const cta2 = enlace(s?.cta_secundario);
+const fecha = fechaCartel(s?.fecha);
+const lugar = cadena(s?.lugar);
+const etiquetas = partes(s?.etiquetas);
+---
+
+{
+  s && (
+    <section id={id} class:list={['hero', etiquetas.length === 0 && 'hero--sin-cinta']} data-bajo-cabecera>
+      {s.imagen && (
+        <div class="hero-foto">
+          <Imagen src={s.imagen} alt={altHero()} ancho={1920} alto={1080} prioridad={primera} respaldo="/placeholders/hero.svg" />
+        </div>
+      )}
+      <span class="hero-bloque hero-bloque--azul" aria-hidden="true" />
+      <span class="hero-bloque hero-bloque--rosa" aria-hidden="true" />
+      <div class="contenedor hero-contenido">
+        <div class="hero-texto">
+          {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+          {s.titulo && <h1 class="hero-titulo">{s.titulo}</h1>}
+          {(fecha.grande || fecha.resto || lugar) && (
+            <div class="hero-cartel">
+              {(fecha.grande || fecha.resto) && (
+                <p class:list={['hero-fecha', !fecha.grande && 'hero-fecha--solo']}>
+                  {fecha.grande && <span class="hero-fecha-grande">{fecha.grande}</span>}
+                  {fecha.resto && <span class="hero-fecha-resto">{fecha.resto}</span>}
+                </p>
+              )}
+              {lugar && (
+                <p class="hero-lugar">
+                  <Icono nombre="mapa" tam={26} />
+                  <span>{lugar}</span>
+                </p>
+              )}
+            </div>
+          )}
+          {s.texto && <p class="hero-parrafo">{s.texto}</p>}
+          {(cta || cta2) && (
+            <div class="botones">
+              {cta && <a class="btn" href={cta.url}>{cta.texto}</a>}
+              {cta2 && <a class="btn-sec" href={cta2.url}>{cta2.texto}</a>}
+            </div>
+          )}
+        </div>
+      </div>
+      {etiquetas.length > 0 && (
+        <div class="hero-cinta">
+          <ul>{etiquetas.map((e) => <li>{e}</li>)}</ul>
+          <ul aria-hidden="true">{etiquetas.map((e) => <li>{e}</li>)}</ul>
+          <ul aria-hidden="true">{etiquetas.map((e) => <li>{e}</li>)}</ul>
+        </div>
+      )}
+    </section>
+  )
+}

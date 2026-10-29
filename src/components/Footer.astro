@@ -1,0 +1,79 @@
+---
+// Pie a todo el ancho en cobalto con corte diagonal arriba: el nombre como firma gigante y cuatro columnas
+// (eslogan con la fecha y el lugar de la portada, menú, contacto y redes), todo desde site.yaml.
+// «Web creada con NoExpertise» se muestra si site.yaml → marca_pie no es false.
+import { site, tel, mapa, whatsapp, cadena } from '../data/site';
+import Icono from './ui/Icono.astro';
+interface Props { variante?: string }
+const { variante = 'congreso' } = Astro.props;
+const c = site.contacto;
+const hero = site.secciones.hero;
+const fecha = cadena(hero?.fecha);
+const lugar = cadena(hero?.lugar);
+const redes = Object.entries(site.redes).filter(([, url]) => url);
+const anio = new Date().getFullYear();
+const hayContacto = c.telefono || c.whatsapp || c.email || c.direccion;
+---
+
+<footer class={`pie pie--${variante}`}>
+  <div class="contenedor">
+    <p class="pie-firma" aria-hidden="true">{site.nombre}</p>
+    <div class="pie-rejilla">
+      <div>
+        <p class="pie-nombre sr-only">{site.nombre}</p>
+        {site.eslogan && <p class="pie-eslogan">{site.eslogan}</p>}
+        {(fecha || lugar) && <p class="rotulo mt-4">{[fecha, lugar].filter(Boolean).join(' · ')}</p>}
+      </div>
+      {
+        site.menu.length > 0 && (
+          <nav aria-label="Menú del pie">
+            <p class="pie-titulo">Menú</p>
+            <ul class="pie-lista">
+              {site.menu.map((e) => <li><a href={e.url}>{e.texto}</a></li>)}
+            </ul>
+          </nav>
+        )
+      }
+      {
+        hayContacto && (
+          <div>
+            <p class="pie-titulo">Contacto</p>
+            <ul class="pie-lista">
+              {c.telefono && <li><a href={tel(c.telefono)}>{c.telefono}</a></li>}
+              {c.whatsapp && <li><a href={whatsapp(c.whatsapp)} rel="noopener" target="_blank">WhatsApp {c.whatsapp}</a></li>}
+              {c.email && <li><a href={`mailto:${c.email}`}>{c.email}</a></li>}
+              {c.direccion && <li><a href={mapa(c.direccion)} rel="noopener" target="_blank">{c.direccion}</a></li>}
+            </ul>
+          </div>
+        )
+      }
+      {
+        redes.length > 0 && (
+          <div>
+            <p class="pie-titulo">Síguenos</p>
+            <ul class="pie-redes">
+              {redes.map(([red, url]) => (
+                <li>
+                  <a href={url} rel="noopener" target="_blank" aria-label={red}>
+                    <Icono nombre={red} tam={20} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </div>
+  <div class="contenedor pie-legal">
+    <span>© {anio} {site.nombre}</span>
+    <a href="/aviso-legal">Aviso legal y privacidad</a>
+    {
+      site.marca_pie && (
+        <span class="pie-noexpertise">
+          Web creada con <a href="https://noexpertise.com" rel="noopener">NoExpertise</a>
+        </span>
+      )
+    }
+  </div>
+</footer>

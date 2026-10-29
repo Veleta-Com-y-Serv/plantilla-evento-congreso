@@ -1,0 +1,31 @@
+---
+// Llamada a la acción: banda rosa a todo el ancho con corte diagonal; `antetitulo`, título gigante, `texto`, `cta`
+// y `cta_secundario`. En escritorio, a la derecha, un bloque cobalto en diagonal con la fecha de la portada
+// (hero.fecha) en letras huecas, como decoración.
+import { seccion, site, enlace, fechaCartel } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const cta = enlace(s?.cta);
+const cta2 = enlace(s?.cta_secundario);
+const fecha = fechaCartel(site.secciones.hero?.fecha).grande;
+---
+
+{
+  s && (s.titulo || cta) && (
+    <Seccion id={Astro.props.id} class="banda--rosa corte cta-cartel">
+      <div class="cta-contenido">
+        {s.antetitulo && <p class="antetitulo">{s.antetitulo}</p>}
+        {s.titulo && <h2 class="cta-titulo">{s.titulo}</h2>}
+        {s.texto && <p class="suave mt-9 max-w-[36rem] text-xl">{s.texto}</p>}
+        {(cta || cta2) && (
+          <div class="botones mt-9">
+            {cta && <a class="btn" href={cta.url}>{cta.texto}</a>}
+            {cta2 && <a class="btn-sec" href={cta2.url}>{cta2.texto}</a>}
+          </div>
+        )}
+      </div>
+      {fecha && <div class="cta-fondo" aria-hidden="true" slot="sangre"><span>{fecha}</span></div>}
+    </Seccion>
+  )
+}

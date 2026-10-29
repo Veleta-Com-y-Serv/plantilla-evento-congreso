@@ -1,0 +1,31 @@
+---
+// Preguntas frecuentes: banda crema rosada con corte diagonal; en escritorio el titular se queda fijo a la izquierda
+// y `preguntas: [{pregunta, respuesta}]` va a la derecha en acordeón nativo (details/summary) con líneas gruesas y
+// un «+» en un bloque rosa inclinado. Sin preguntas no se pinta.
+import { seccion, parrafos } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const lista = (s?.preguntas ?? []).filter((p) => p.pregunta);
+---
+
+{
+  s && lista.length > 0 && (
+    <Seccion id={Astro.props.id} class="banda--crema2 corte corte--inv">
+      <div class="preguntas-rejilla">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        <div class="preguntas">
+          {lista.map((p) => (
+            <details>
+              <summary>{p.pregunta}</summary>
+              <div class="space-y-3">
+                {parrafos(p.respuesta).map((t) => <p>{t}</p>)}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </Seccion>
+  )
+}

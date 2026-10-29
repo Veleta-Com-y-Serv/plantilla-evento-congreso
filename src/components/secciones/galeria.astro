@@ -1,0 +1,31 @@
+---
+// Galería: banda noche; titular en el contenedor y, debajo, `galeria` (rutas) en un mosaico de borde a borde sin
+// márgenes (2 columnas en móvil, 4 en tableta y escritorio con piezas dobles). `cta` opcional (p. ej. Instagram).
+// Sin fotos no se pinta.
+import { seccion, enlace, fuera } from '../../data/site';
+import { altGaleria } from '../../lib/seo';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const cta = enlace(s?.cta);
+---
+
+{
+  s && s.galeria.length > 0 && (
+    <Seccion id={Astro.props.id} class="banda--noche sin-abajo">
+      <div class="flex flex-wrap items-end justify-between gap-x-10 gap-y-2">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {cta && <p class="mb-12 lg:mb-16"><a class="btn-sec" href={cta.url} {...fuera(cta.url)}>{cta.texto}</a></p>}
+      </div>
+      <ul class="mosaico" slot="sangre">
+        {s.galeria.map((g, i) => (
+          <li>
+            <Imagen src={g} alt={altGaleria(i)} ancho={900} alto={900} />
+          </li>
+        ))}
+      </ul>
+    </Seccion>
+  )
+}

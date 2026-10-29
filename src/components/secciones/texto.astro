@@ -1,0 +1,46 @@
+---
+// Apartado de texto genérico (site.yaml: `tipo: texto`): banda crema a todo el ancho con titular partido, párrafos
+// en dos columnas en escritorio, `imagen` opcional a sangre en 50/50, `items` con icono en bloques rosas en rejilla
+// de hasta 4 columnas y `cta`. Lo usan los apartados nuevos que pide el cliente.
+import { seccion, parrafos, enlace, fuera } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const cta = enlace(s?.cta);
+const n = s?.items.length ?? 0;
+const columnas = n >= 4 ? 'sm:grid-cols-2 lg:grid-cols-4' : n === 3 ? 'sm:grid-cols-3' : n === 2 ? 'sm:grid-cols-2' : '';
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id} class="banda--crema">
+      <div class:list={['grid gap-10', s.imagen && 'lg:grid-cols-2 lg:gap-16 lg:items-center']}>
+        <div>
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} class="titular--compacto" />
+          <div class:list={['space-y-4 text-lg', !s.imagen && 'lg:columns-2 lg:gap-16 lg:space-y-0 [&>p]:mb-4']}>
+            {parrafos(s.texto).map((p) => <p>{p}</p>)}
+          </div>
+          {cta && <p class="mt-9"><a class="btn" href={cta.url} {...fuera(cta.url)}>{cta.texto}</a></p>}
+        </div>
+        {s.imagen && (
+          <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={900} class="aspect-[4/3] w-full object-cover [clip-path:polygon(8%_0,100%_0,100%_100%,0_100%)]" />
+        )}
+      </div>
+      {n > 0 && (
+        <ul class:list={['mt-14 grid gap-8', columnas]}>
+          {s.items.map((it) => (
+            <li class="border-t-[3px] border-[var(--tinta)] pt-5">
+              <span class="llegar-icono" aria-hidden="true"><Icono nombre={it.icono} tam={22} /></span>
+              <h3 class="mt-4 text-[1.35rem] tracking-tight">{it.titulo}</h3>
+              {it.texto && <p class="suave mt-2">{it.texto}</p>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </Seccion>
+  )
+}

@@ -1,0 +1,103 @@
+---
+// Programa: banda noche con corte diagonal. `programa: [{dia, hora, titulo, texto, ponente, sala, categoria}]`
+// agrupado por `dia` (en el orden en que aparece) en pestañas; cada sesión es una fila a todo el ancho: hora en
+// monoespaciada rosa, título y texto, y a la derecha ponente, sala y la etiqueta de `categoria` (un color por
+// categoría). Sin JavaScript se ven todos los días seguidos. `cta` opcional al final. Sin sesiones no se pinta.
+import { seccion, cadena, agrupar, enlace } from '../../data/site';
+import type { Sesion } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const sesiones = (s?.programa ?? []).filter((x) => cadena(x.titulo));
+const dias = agrupar<Sesion>(sesiones, (x) => cadena(x.dia));
+const categorias = [...new Set(sesiones.map((x) => cadena(x.categoria)).filter(Boolean))];
+const color = (c: string) => `etiqueta--${categorias.indexOf(c) % 5}`;
+const cta = enlace(s?.cta);
+const conPestanas = dias.length > 1;
+---
+
+{
+  s && sesiones.length > 0 && (
+    <Seccion id={id} class="banda--noche corte corte--inv">
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} partido />
+      <div class="programa" data-programa>
+        {conPestanas && (
+          <div class="pestanas" role="tablist" aria-label={s.titulo || s.antetitulo || undefined}>
+            {dias.map((d, i) => (
+              <button type="button" class="pestana" role="tab" id={`${id}-pestana-${i}`} aria-controls={`${id}-dia-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+                {d.grupo || `${i + 1}`}
+              </button>
+            ))}
+          </div>
+        )}
+        {dias.map((d, i) => {
+          const H = d.grupo ? 'h4' : 'h3';
+          return (
+          <div class="programa-dia" id={`${id}-dia-${i}`} role={conPestanas ? 'tabpanel' : undefined} aria-labelledby={conPestanas ? `${id}-pestana-${i}` : undefined}>
+            {d.grupo && <h3 class="programa-dia-titulo">{d.grupo}</h3>}
+            <ol class="sesiones">
+              {d.elementos.map((x) => (
+                <li>
+                  <span class="sesion-hora">{cadena(x.hora)}</span>
+                  <div class="min-w-0">
+                    <H class="sesion-titulo">{x.titulo}</H>
+                    {cadena(x.texto) && <p class="suave mt-2 max-w-[44rem]">{x.texto}</p>}
+                  </div>
+                  {(cadena(x.ponente) || cadena(x.sala) || cadena(x.categoria)) && (
+                    <div class="sesion-meta">
+                      {cadena(x.categoria) && <span class:list={['etiqueta', color(cadena(x.categoria))]}>{x.categoria}</span>}
+                      {cadena(x.ponente) && (
+                        <span class="sesion-ponente inline-flex items-start gap-2">
+                          <Icono nombre="microfono" tam={18} class="mt-[.2rem] shrink-0 text-[var(--rosa)]" />
+                          <span>{x.ponente}</span>
+                        </span>
+                      )}
+                      {cadena(x.sala) && (
+                        <span class="suave inline-flex items-start gap-2">
+                          <Icono nombre="mapa" tam={18} class="mt-[.2rem] shrink-0" />
+                          <span>{x.sala}</span>
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+          );
+        })}
+      </div>
+      {cta && <p class="mt-12"><a class="btn" href={cta.url}>{cta.texto}</a></p>}
+    </Seccion>
+  )
+}
+<script is:inline>
+  // Pestañas por día: sin JavaScript se ven todos los días seguidos.
+  document.querySelectorAll('[data-programa]').forEach(function (p) {
+    var tabs = Array.prototype.slice.call(p.querySelectorAll('[role="tab"]'));
+    if (!tabs.length) return;
+    p.classList.add('con-pestanas');
+    p.querySelector('.pestanas').classList.add('lista');
+    function elige(i, foco) {
+      tabs.forEach(function (t, j) {
+        var activa = i === j;
+        t.setAttribute('aria-selected', activa ? 'true' : 'false');
+        t.tabIndex = activa ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if (panel) panel.hidden = !activa;
+      });
+      if (foco) tabs[i].focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { elige(i, false); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); elige((i + 1) % tabs.length, true); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); elige((i - 1 + tabs.length) % tabs.length, true); }
+      });
+    });
+    elige(0, false);
+  });
+</script>

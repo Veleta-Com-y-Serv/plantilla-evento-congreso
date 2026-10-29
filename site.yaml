@@ -1,0 +1,195 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+# Listas planas: nunca una lista dentro de un elemento de lista. Precios siempre entre comillas.
+nombre: Jornadas Litoral
+eslogan: Jornadas de turismo, ciudad y mar en Tarragona.
+sector: congreso
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = nombre con el sello de bloques.
+colores:
+  primario: "#2b35e0"
+  acento: "#ff4d88"
+  fondo: "#fff6e9"
+  texto: "#14123a"
+contacto:
+  telefono: "977 24 58 13"
+  email: hola@jornadaslitoral.es
+  direccion: Rambla Nova 88, 3.º, 43001 Tarragona
+  horario: "Secretaría técnica: lunes a viernes, de 9:00 a 14:00."
+  whatsapp: "644 318 207"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: ""
+  linkedin: https://www.linkedin.com/
+menu:
+  - { texto: Programa, url: "/#programa" }
+  - { texto: Ponentes, url: "/#ponentes" }
+  - { texto: Entradas, url: "/#entradas" }
+  - { texto: El lugar, url: "/#lugar" }
+  - { texto: Patrocinio, url: "/#patrocinadores" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Inscríbete, url: "/#entradas" }
+seo:
+  titulo: Jornadas Litoral · Turismo, ciudad y mar en Tarragona
+  descripcion: "Tres días de ponencias, mesas redondas y talleres sobre turismo sostenible, patrimonio y vida en la costa, en el Moll de Costa de Tarragona."
+  tipo: LocalBusiness
+marca_pie: true
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: 4.ª edición · Tarragona
+    titulo: Ciudades que miran al mar
+    texto: "Tres días de ponencias, mesas y talleres sobre turismo sostenible, patrimonio y vida en la costa, con quienes lo están cambiando."
+    fecha: "15—17 de abril de 2027"
+    lugar: "Moll de Costa · Tarragona"
+    etiquetas: "Turismo sostenible; Patrimonio; Puertos y ciudad; Producto local; Movilidad; Cultura"
+    imagen: /fotos/hero.jpg
+    cta: { texto: Consigue tu entrada, url: "/#entradas" }
+    cta_secundario: { texto: Ver el programa, url: "/#programa" }
+
+  cifras:
+    activa: true
+    antetitulo: La edición de 2027
+    titulo: Litoral en cifras
+    items:
+      - { titulo: "3", texto: "días de jornadas" }
+      - { titulo: "32", texto: "ponentes de toda la costa" }
+      - { titulo: "1.200", texto: "asistentes en la última edición" }
+      - { titulo: "18", texto: "talleres y visitas guiadas" }
+
+  sobre:
+    activa: true
+    antetitulo: Las jornadas
+    titulo: Un punto de encuentro entre quien gestiona, quien visita y quien vive la costa
+    texto: "Litoral nació en 2024 en una nave del puerto con cien personas y una pregunta: ¿cómo seguimos recibiendo visitantes sin perder la ciudad?\n\nCuatro ediciones después reunimos a técnicos de turismo, hosteleros, arquitectas, pescadores, investigadores y vecinos. Sin discursos largos: experiencias que funcionan, datos claros y tiempo para hablar entre sesiones."
+    imagen: /fotos/sobre.jpg
+    items:
+      - { titulo: Turismo que deja algo, texto: "Modelos que reparten el gasto del visitante por los barrios y el comercio local." }
+      - { titulo: Patrimonio vivo, texto: "Restos romanos, barrios marineros y fiestas: cuidarlos y que sigan siendo de la gente." }
+      - { titulo: Puertos abiertos, texto: "Muelles, paseos y naves que vuelven a ser ciudad." }
+      - { titulo: Mesa y producto, texto: "Lonja, huerta y bodegas del territorio como motor del viaje." }
+    cta: { texto: Consulta el programa, url: "/#programa" }
+
+  programa:
+    activa: true
+    antetitulo: Programa
+    titulo: Tres días, una agenda
+    texto: "Las sesiones de la mañana son en la sala grande; las de la tarde, en las salas de taller. Programa sujeto a pequeños cambios."
+    programa:
+      - { dia: "Jueves 15", hora: "9:30", titulo: Acreditaciones y café de bienvenida, texto: "", ponente: "", sala: Vestíbulo, categoria: Pausa }
+      - { dia: "Jueves 15", hora: "10:15", titulo: Inauguración de las jornadas, texto: "Presentación de la cuarta edición y de los grupos de trabajo.", ponente: Organización de Litoral, sala: Sala Mar, categoria: Ponencia }
+      - { dia: "Jueves 15", hora: "11:00", titulo: "El visitante que se queda: estancias largas en ciudades medianas", texto: "Qué hace que alguien alargue el viaje y qué gana la ciudad cuando lo hace.", ponente: Clara Vives Roig, sala: Sala Mar, categoria: Ponencia }
+      - { dia: "Jueves 15", hora: "12:30", titulo: "Mesa redonda: barrios marineros, vecinos y alquiler turístico", texto: "Tres municipios de la costa cuentan qué han probado y qué no ha funcionado.", ponente: "Jordi Ferrer, Marta Llorens y Ana Bosch", sala: Sala Mar, categoria: Mesa redonda }
+      - { dia: "Jueves 15", hora: "16:00", titulo: "Taller: cómo medir la huella de un evento", texto: "Una hoja de cálculo sencilla para saber cuánto consume y cuánto deja tu evento.", ponente: Pau Castells, sala: Sala Taller 1, categoria: Taller }
+      - { dia: "Jueves 15", hora: "18:30", titulo: Paseo guiado por la Part Alta al atardecer, texto: "Salida desde la puerta de la nave. Plazas limitadas.", ponente: Núria Domènech, sala: Salida en el vestíbulo, categoria: Visita }
+      - { dia: "Viernes 16", hora: "9:30", titulo: "Patrimonio romano y vida cotidiana: convivir con un museo al aire libre", texto: "Cómo se cuida un patrimonio que está en mitad de las calles, las tiendas y las casas.", ponente: Elena Puig Marsal, sala: Sala Mar, categoria: Ponencia }
+      - { dia: "Viernes 16", hora: "11:00", titulo: "Puertos que vuelven a la ciudad", texto: "Naves, tinglados y muelles reconvertidos en paseo, mercado y sala de cultura.", ponente: Iñaki Arrieta, sala: Sala Mar, categoria: Ponencia }
+      - { dia: "Viernes 16", hora: "12:00", titulo: Pausa y degustación de producto de la lonja, texto: "", ponente: "", sala: Terraza del muelle, categoria: Pausa }
+      - { dia: "Viernes 16", hora: "12:45", titulo: "Mesa redonda: de la barca al plato", texto: "Cofradías, cocineros y mercados hablan de precio justo y de temporada.", ponente: "Rosa Mestres, Toni Sabaté y Laia Fort", sala: Sala Mar, categoria: Mesa redonda }
+      - { dia: "Viernes 16", hora: "16:30", titulo: "Taller: rutas a pie que reparten visitantes", texto: "Diseñamos en grupos una ruta por barrios poco visitados.", ponente: Núria Domènech, sala: Sala Taller 2, categoria: Taller }
+      - { dia: "Viernes 16", hora: "21:00", titulo: Cena de las jornadas en el Serrallo, texto: "Con reserva previa al inscribirte.", ponente: "", sala: Barrio del Serrallo, categoria: Visita }
+      - { dia: "Sábado 17", hora: "10:00", titulo: "Moverse sin coche por la costa", texto: "Tren, bicicleta y lanzadera: lo que funciona en verano y en invierno.", ponente: David Soler Ribas, sala: Sala Mar, categoria: Ponencia }
+      - { dia: "Sábado 17", hora: "11:30", titulo: Presentación de los grupos de trabajo, texto: "Conclusiones de los talleres y propuestas para el próximo año.", ponente: Grupos de trabajo, sala: Sala Mar, categoria: Mesa redonda }
+      - { dia: "Sábado 17", hora: "13:00", titulo: Clausura y vermut en el muelle, texto: "", ponente: "", sala: Terraza del muelle, categoria: Pausa }
+    cta: { texto: Reserva tu plaza, url: "/#entradas" }
+
+  ponentes:
+    activa: true
+    antetitulo: Ponentes
+    titulo: Quién viene a contarlo
+    texto: "Gente que trabaja cada día en la costa: técnicos, investigadoras, hosteleros y vecinos."
+    personas:
+      - { nombre: Clara Vives Roig, cargo: "Investigadora en turismo urbano", foto: /placeholders/persona.svg, texto: "El visitante que se queda" }
+      - { nombre: Iñaki Arrieta, cargo: "Arquitecto de espacios portuarios", foto: /placeholders/persona.svg, texto: "Puertos que vuelven a la ciudad" }
+      - { nombre: Elena Puig Marsal, cargo: "Arqueóloga y divulgadora", foto: /placeholders/persona.svg, texto: "Convivir con un museo al aire libre" }
+      - { nombre: David Soler Ribas, cargo: "Técnico de movilidad", foto: /placeholders/persona.svg, texto: "Moverse sin coche por la costa" }
+      - { nombre: Rosa Mestres, cargo: "Patrona de una cofradía de pescadores", foto: /placeholders/persona.svg, texto: "De la barca al plato" }
+      - { nombre: Pau Castells, cargo: "Consultor de eventos sostenibles", foto: /placeholders/persona.svg, texto: "Medir la huella de un evento" }
+      - { nombre: Núria Domènech, cargo: "Guía e historiadora del arte", foto: /placeholders/persona.svg, texto: "Rutas a pie que reparten visitantes" }
+      - { nombre: Toni Sabaté, cargo: "Cocinero en el Serrallo", foto: /placeholders/persona.svg, texto: "De la barca al plato" }
+
+  entradas:
+    activa: true
+    antetitulo: Entradas
+    titulo: Elige tu acreditación
+    texto: "Todas incluyen el café de las pausas y el certificado de asistencia. Los talleres tienen plazas limitadas."
+    entradas:
+      - { nombre: Un día, precio: "45 €", texto: "Para venir a la sesión que más te interesa.", incluye: "Ponencias y mesas del día elegido; Café y almuerzo; Certificado de asistencia", destacado: false, url: "/#contacto" }
+      - { nombre: Abono completo, precio: "110 €", texto: "Los tres días, con talleres y visitas.", incluye: "Las tres jornadas completas; Un taller a elegir; Paseo guiado por la Part Alta; Café y almuerzo los tres días; Certificado de asistencia", destacado: true, url: "/#contacto" }
+      - { nombre: Estudiantes y desempleo, precio: "30 €", texto: "Abono completo con acreditación de tu situación.", incluye: "Las tres jornadas completas; Café y almuerzo; Certificado de asistencia", destacado: false, url: "/#contacto" }
+      - { nombre: Grupos y empresas, precio: "Consultar", texto: "A partir de cinco personas de la misma entidad.", incluye: "Abonos con descuento; Factura única; Reserva de mesa en la cena", destacado: false, url: "/#contacto" }
+    boton: Quiero esta
+    nota: "Precios con IVA incluido. La cena de las jornadas se paga aparte al inscribirte."
+
+  galeria:
+    activa: true
+    antetitulo: Ediciones anteriores
+    titulo: Así fue Litoral 2026
+    galeria:
+      - /fotos/galeria-1.jpg
+      - /fotos/galeria-2.jpg
+      - /fotos/galeria-3.jpg
+      - /fotos/galeria-4.jpg
+      - /fotos/galeria-5.jpg
+      - /fotos/galeria-6.jpg
+      - /fotos/galeria-7.jpg
+      - /fotos/galeria-8.jpg
+    cta: { texto: Más fotos en Instagram, url: "https://www.instagram.com/" }
+
+  lugar:
+    activa: true
+    antetitulo: El lugar
+    titulo: Una nave del puerto, a diez minutos de la estación
+    texto: "Las jornadas se celebran en una antigua nave portuaria del Moll de Costa, reformada como sala de actos, con terraza sobre el muelle y salas de taller."
+    direccion: "Moll de Costa, Tinglado 4, 43004 Tarragona"
+    imagen: /fotos/lugar.jpg
+    items:
+      - { titulo: En tren, texto: "La estación de Tarragona queda a diez minutos a pie por el paseo del puerto.", icono: tren }
+      - { titulo: En autobús, texto: "Varias líneas urbanas paran a cinco minutos de la nave.", icono: bus }
+      - { titulo: En coche, texto: "Aparcamiento público del puerto a trescientos metros.", icono: coche }
+      - { titulo: En avión, texto: "El aeropuerto de Reus está a veinte minutos en autobús o taxi.", icono: avion }
+
+  patrocinadores:
+    activa: true
+    antetitulo: Patrocinio
+    titulo: Lo hacen posible
+    texto: "Empresas y entidades del territorio que apoyan las jornadas."
+    clientes:
+      - { nombre: Fundació Mar Endins, nivel: Principal, imagen: /placeholders/logo.svg, url: "" }
+      - { nombre: Hotels Punta Roja, nivel: Principal, imagen: /placeholders/logo.svg, url: "" }
+      - { nombre: Grup Mestral, nivel: Colaboradores, imagen: /placeholders/logo.svg, url: "" }
+      - { nombre: Celler Pedra Blanca, nivel: Colaboradores, imagen: /placeholders/logo.svg, url: "" }
+      - { nombre: Mar i Pa Cooperativa, nivel: Colaboradores, imagen: /placeholders/logo.svg, url: "" }
+      - { nombre: Escola de Turisme del Port, nivel: Colaboradores, imagen: /placeholders/logo.svg, url: "" }
+      - { nombre: Diari de la Costa, nivel: Medios, imagen: /placeholders/logo.svg, url: "" }
+      - { nombre: Ona Ràdio Local, nivel: Medios, imagen: /placeholders/logo.svg, url: "" }
+    cta: { texto: Quiero patrocinar, url: "/#contacto" }
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Antes de venir
+    preguntas:
+      - { pregunta: "¿Puedo cambiar el nombre de mi entrada?", respuesta: "Sí, hasta una semana antes de las jornadas. Escríbenos con el nombre nuevo y te enviamos la acreditación." }
+      - { pregunta: "¿Hay que apuntarse a los talleres?", respuesta: "Sí. Los talleres tienen plazas limitadas y se eligen al inscribirte con el abono completo. Si quedan plazas, se pueden reservar en el vestíbulo." }
+      - { pregunta: "¿Dais certificado de asistencia?", respuesta: "Sí, con las horas de cada sesión. Lo enviamos por correo la semana siguiente a las jornadas." }
+      - { pregunta: "¿Las sesiones se graban?", respuesta: "Las ponencias de la sala grande se graban y se publican después. Las mesas redondas y los talleres, no." }
+      - { pregunta: "¿Es accesible la nave?", respuesta: "Sí. Todo está en planta baja, con aseos adaptados y bucle magnético en la sala grande. Si necesitas algo más, dínoslo al inscribirte." }
+      - { pregunta: "¿Puedo proponer una ponencia para la próxima edición?", respuesta: "Claro. Abrimos la convocatoria en otoño; mientras, escríbenos desde el formulario con tu propuesta." }
+
+  cta:
+    activa: true
+    antetitulo: Plazas limitadas
+    titulo: Nos vemos en abril en el puerto
+    texto: "El abono completo suele agotarse un mes antes. Asegura tu plaza y elige taller."
+    cta: { texto: Consigue tu entrada, url: "/#entradas" }
+    cta_secundario: { texto: Escríbenos, url: "/#contacto" }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: "¿Grupos, prensa o patrocinio?"
+    texto: "Escríbenos y te responde la secretaría técnica en un par de días laborables."
+    motivos: "Inscripción de grupo; Quiero patrocinar; Prensa; Proponer una ponencia; Otra consulta"
+    boton: Enviar consulta

@@ -1,0 +1,53 @@
+---
+// El lugar: fila 50/50 a sangre; texto en banda cobalto a la izquierda y la foto (`imagen`) tocando el borde
+// derecho de la ventana con el lado izquierdo en diagonal. `texto`, cómo llegar (`items: [{titulo, texto, icono}]`
+// con el icono en un bloque rosa) y la `direccion` (o la de contacto) como enlace al mapa. `cta` opcional.
+import { seccion, site, cadena, parrafos, mapa, enlace, fuera } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const direccion = cadena(s?.direccion) || site.contacto.direccion;
+const cta = enlace(s?.cta);
+---
+
+{
+  s && (s.titulo || s.texto || s.items.length > 0) && (
+    <section id={Astro.props.id} class="banda banda--azul">
+      <div class:list={[s.imagen ? 'partida partida--foto-der' : 'contenedor']}>
+        <div class:list={[s.imagen ? 'partida-texto order-2 lg:order-1' : 'seccion']}>
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} class="titular--compacto" />
+          <div class="max-w-[40rem] space-y-4 text-lg">
+            {parrafos(s.texto).map((p) => <p>{p}</p>)}
+          </div>
+          {s.items.length > 0 && (
+            <ul class="llegar">
+              {s.items.map((it) => (
+                <li>
+                  <span class="llegar-icono" aria-hidden="true"><Icono nombre={it.icono} tam={22} /></span>
+                  <div>
+                    <h3 class="text-[1.2rem] tracking-tight">{it.titulo}</h3>
+                    {it.texto && <p class="suave mt-1">{it.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          {direccion && (
+            <a class="direccion" href={mapa(direccion)} rel="noopener" target="_blank">
+              <span class="sr-only">Ver en el mapa: </span>{direccion}
+            </a>
+          )}
+          {cta && <p class="mt-8"><a class="btn" href={cta.url} {...fuera(cta.url)}>{cta.texto}</a></p>}
+        </div>
+        {s.imagen && (
+          <div class="partida-foto partida-foto--abajo order-1 lg:order-2">
+            <Imagen src={s.imagen} alt={altSeccion(s)} ancho={1200} alto={1400} />
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}

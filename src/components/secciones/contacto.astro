@@ -1,0 +1,51 @@
+---
+// Contacto: banda noche a todo el ancho en dos columnas: a la izquierda titular, `texto`, teléfono y correo en
+// grande, WhatsApp, horario y dirección (de site.yaml → contacto); a la derecha el formulario (mailto) con
+// entidad y motivo. `motivos`: cadena con «;» para el desplegable (vacía = sin desplegable). `boton`: texto del botón.
+import { seccion, site, tel, whatsapp, mapa, cadena, partes } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const c = site.contacto;
+const motivos = partes(s?.motivos);
+const boton = cadena(s?.boton) || undefined;
+---
+
+{
+  s && (
+    <Seccion id={Astro.props.id} class="banda--noche">
+      <div class="contacto-rejilla">
+        <div>
+          <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} class="titular--compacto" />
+          <div class="space-y-4">
+            {c.telefono && (
+              <p><a class="contacto-grande" href={tel(c.telefono)}><span class="sr-only">Teléfono: </span>{c.telefono}</a></p>
+            )}
+            {c.email && (
+              <p><a class="contacto-grande contacto-correo" href={`mailto:${c.email}`}><span class="sr-only">Email: </span>{c.email}</a></p>
+            )}
+          </div>
+          {c.whatsapp && (
+            <p class="mt-8">
+              <a class="btn" href={whatsapp(c.whatsapp)} rel="noopener" target="_blank"><Icono nombre="whatsapp" tam={20} /> WhatsApp {c.whatsapp}</a>
+            </p>
+          )}
+          <ul class="mt-10 space-y-3">
+            {c.horario && (
+              <li class="flex gap-3"><Icono nombre="reloj" tam={22} class="mt-[.15rem] shrink-0 text-[var(--rosa)]" /><span><span class="sr-only">Horario: </span>{c.horario}</span></li>
+            )}
+            {c.direccion && (
+              <li class="flex gap-3"><Icono nombre="mapa" tam={22} class="mt-[.15rem] shrink-0 text-[var(--rosa)]" /><a class="underline decoration-[var(--rosa)] underline-offset-4" href={mapa(c.direccion)} rel="noopener" target="_blank"><span class="sr-only">Dirección: </span>{c.direccion}</a></li>
+            )}
+          </ul>
+        </div>
+        <div class="lg:pt-4">
+          <FormularioContacto motivos={motivos} boton={boton} />
+        </div>
+      </div>
+    </Seccion>
+  )
+}

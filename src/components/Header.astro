@@ -1,0 +1,67 @@
+---
+// Cabecera fija a todo el ancho: sello de bloques con la inicial + nombre (o el logo), menú de site.yaml y
+// `boton_cabecera` como botón rosa en paralelogramo. Transparente sobre la portada (la primera sección con
+// `data-bajo-cabecera`) y sólida en noche al bajar; sin JavaScript se queda sólida. Por debajo de 1180 px,
+// menú plegable (<details>). Aspecto en src/styles/global.css (.cabecera--congreso).
+import { site } from '../data/site';
+import type { Enlace } from '../data/site';
+interface Props { variante?: string; cta?: Enlace | null }
+const { variante = 'congreso', cta = null } = Astro.props;
+const extra = cta && cta.url && cta.texto ? cta : null;
+---
+
+<header class={`cabecera cabecera--${variante} solida`} id="cabecera">
+  <div class="contenedor cabecera-fila">
+    <a href="/" class="marca" aria-label={`${site.nombre}, inicio`}>
+      {
+        site.logo ? (
+          <img src={site.logo} alt={site.nombre} class="marca-logo" width="160" height="44" />
+        ) : (
+          <>
+            <span class="marca-inicial" aria-hidden="true">{site.nombre.trim().charAt(0)}</span>
+            <span class="marca-nombre">{site.nombre}</span>
+          </>
+        )
+      }
+    </a>
+    {
+      site.menu.length > 0 && (
+        <nav class="cabecera-nav" aria-label="Menú principal">
+          {site.menu.map((e) => <a href={e.url}>{e.texto}</a>)}
+        </nav>
+      )
+    }
+    {extra && <a href={extra.url} class="btn cabecera-cta">{extra.texto}</a>}
+    {
+      (site.menu.length > 0 || extra) && (
+        <details class="menu-movil">
+          <summary>
+            <span class="menu-movil-icono" aria-hidden="true" />
+            <span>Menú</span>
+          </summary>
+          <nav class="menu-movil-panel" aria-label="Menú">
+            {site.menu.map((e) => <a href={e.url}>{e.texto}</a>)}
+            {extra && <a href={extra.url} class="btn">{extra.texto}</a>}
+          </nav>
+        </details>
+      )
+    }
+  </div>
+</header>
+<script is:inline>
+  // La cabecera va antes de <main>: se mira la primera sección cuando el documento está listo.
+  document.addEventListener('DOMContentLoaded', function () {
+    var h = document.getElementById('cabecera');
+    if (!h) return;
+    var primera = document.querySelector('main > :first-child');
+    var sobre = !!(primera && primera.hasAttribute('data-bajo-cabecera'));
+    var menu = h.querySelector('.menu-movil');
+    function pinta() { h.classList.toggle('solida', !sobre || window.scrollY > 40 || (menu && menu.open)); }
+    pinta();
+    window.addEventListener('scroll', pinta, { passive: true });
+    if (menu) menu.addEventListener('toggle', pinta);
+    h.querySelectorAll('.menu-movil a').forEach(function (a) {
+      a.addEventListener('click', function () { menu.open = false; });
+    });
+  });
+</script>

@@ -1,0 +1,42 @@
+---
+// Patrocinadores: banda crema; `clientes: [{nombre, nivel, imagen, url}]` agrupados por `nivel` (en el orden en que
+// aparece) en rejillas de celdas separadas por líneas gruesas; el primer nivel, con celdas más grandes. Cada celda
+// enseña el logo (`imagen`, en gris; el de /placeholders/ no cuenta) o el nombre en grande; con `url`, enlaza a su web. `cta` opcional.
+// Sin patrocinadores no se pinta (la plataforma no los inventa).
+import { seccion, cadena, agrupar, enlace, fuera } from '../../data/site';
+import type { Cliente } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const clientes = (s?.clientes ?? []).filter((c) => cadena(c.nombre));
+const niveles = agrupar<Cliente>(clientes, (c) => cadena(c.nivel));
+const cta = enlace(s?.cta);
+// El logo de relleno (/placeholders/) no se enseña: hasta que el cliente sube el suyo, sale el nombre.
+const logo = (c: Cliente) => (/^\/placeholders\//.test(cadena(c.imagen)) ? '' : cadena(c.imagen));
+---
+
+{
+  s && clientes.length > 0 && (
+    <Seccion id={Astro.props.id} class="banda--crema">
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} partido />
+      {niveles.map((n, i) => (
+        <div class="patrocinio">
+          {n.grupo ? <h3 class="patrocinio-nivel rotulo">{n.grupo}</h3> : <span aria-hidden="true" />}
+          <ul class:list={['celdas', i === 0 && niveles.length > 1 && 'celdas--grandes']}>
+            {n.elementos.map((c) => {
+              const url = cadena(c.url);
+              const contenido = logo(c) ? <img src={logo(c)} alt={c.nombre} loading="lazy" decoding="async" width="240" height="96" /> : <span>{c.nombre}</span>;
+              return (
+                <li class:list={['celda', url && 'celda--enlace']}>
+                  {url ? <a class="celda-enlace" href={url} {...fuera(url)}>{contenido}</a> : contenido}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
+      {cta && <p class="mt-12"><a class="btn" href={cta.url} {...fuera(cta.url)}>{cta.texto}</a></p>}
+    </Seccion>
+  )
+}

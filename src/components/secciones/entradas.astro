@@ -1,0 +1,53 @@
+---
+// Entradas: banda cielo con corte diagonal; `entradas: [{nombre, precio, texto, incluye, destacado, url}]` como
+// acreditaciones colgadas de su cinta (agujero arriba, borde grueso); la destacada en cobalto con una estrella rosa.
+// `precio` es cadena («45 €», «Consultar»): vacío = no se muestra. `incluye` separado por «;». Botón de cada una:
+// texto `boton` (o el de `cta`), destino su `url` (o el de `cta`, o el formulario). `nota` debajo.
+// Sin entradas no se pinta.
+import { seccion, cadena, partes, enlace, fuera } from '../../data/site';
+import Seccion from '../ui/Seccion.astro';
+import Titular from '../ui/Titular.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const s = seccion(Astro.props.id);
+const entradas = (s?.entradas ?? []).filter((e) => cadena(e.nombre));
+const cta = enlace(s?.cta);
+const boton = cadena(s?.boton) || cta?.texto || 'Inscribirme';
+const nota = cadena(s?.nota);
+const columnas = entradas.length >= 4 ? 'acreditaciones--4' : entradas.length === 3 ? 'acreditaciones--3' : '';
+---
+
+{
+  s && entradas.length > 0 && (
+    <Seccion id={Astro.props.id} class="banda--cielo corte">
+      <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} partido />
+      <ul class:list={['acreditaciones', columnas, entradas.length === 1 && 'max-w-md', entradas.length === 2 && 'max-w-4xl']}>
+        {entradas.map((e) => {
+          const precio = cadena(e.precio);
+          const incluye = partes(e.incluye);
+          const url = cadena(e.url) || cta?.url || '/#contacto';
+          const destacada = e.destacado === true;
+          return (
+            <li class:list={['acreditacion', destacada && 'acreditacion--destacada']}>
+              {destacada && <span class="acreditacion-sello" aria-hidden="true" />}
+              <h3 class="acreditacion-nombre">{e.nombre}</h3>
+              {precio && <p class="acreditacion-precio">{precio}</p>}
+              {cadena(e.texto) && <p class="suave mt-3">{e.texto}</p>}
+              {incluye.length > 0 && (
+                <ul class="acreditacion-incluye">
+                  {incluye.map((x) => (
+                    <li><Icono nombre="check" tam={18} /><span>{x}</span></li>
+                  ))}
+                </ul>
+              )}
+              <p class="mt-auto pt-7">
+                <a class="btn" href={url} {...fuera(url)}><span class="sr-only">{e.nombre}: </span>{boton}</a>
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+      {nota && <p class="suave mt-10 max-w-[48rem] text-sm">{nota}</p>}
+    </Seccion>
+  )
+}
