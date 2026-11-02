@@ -23,11 +23,15 @@ secciones:
   - { id: contacto, nombre: Contacto }
 estilo: festivo
 plan_minimo: presencia
-version: 1.0.0
+version: 1.1.0
 base: astrowind
 demo_url: https://demo-plantilla-evento-congreso.noexpertise.com
 activa: true
 orden: 480
+
+# Páginas propias (docs/plantillas.md § Fichas por elemento y páginas por zona). Espejo en src/data/fichas.ts.
+fichas:
+  - { lista: programa, campo: programa, ruta: ponencias, nombre: Ponencia, tipo: Event }
 
 # Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
 # tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.

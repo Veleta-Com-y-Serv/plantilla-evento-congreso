@@ -79,17 +79,89 @@ secciones:
     programa:
       - { dia: "Jueves 15", hora: "9:30", titulo: Acreditaciones y café de bienvenida, texto: "", ponente: "", sala: Vestíbulo, categoria: Pausa }
       - { dia: "Jueves 15", hora: "10:15", titulo: Inauguración de las jornadas, texto: "Presentación de la cuarta edición y de los grupos de trabajo.", ponente: Organización de Litoral, sala: Sala Mar, categoria: Ponencia }
-      - { dia: "Jueves 15", hora: "11:00", titulo: "El visitante que se queda: estancias largas en ciudades medianas", texto: "Qué hace que alguien alargue el viaje y qué gana la ciudad cuando lo hace.", ponente: Clara Vives Roig, sala: Sala Mar, categoria: Ponencia }
-      - { dia: "Jueves 15", hora: "12:30", titulo: "Mesa redonda: barrios marineros, vecinos y alquiler turístico", texto: "Tres municipios de la costa cuentan qué han probado y qué no ha funcionado.", ponente: "Jordi Ferrer, Marta Llorens y Ana Bosch", sala: Sala Mar, categoria: Mesa redonda }
-      - { dia: "Jueves 15", hora: "16:00", titulo: "Taller: cómo medir la huella de un evento", texto: "Una hoja de cálculo sencilla para saber cuánto consume y cuánto deja tu evento.", ponente: Pau Castells, sala: Sala Taller 1, categoria: Taller }
+      - dia: "Jueves 15"
+        hora: "11:00"
+        titulo: "El visitante que se queda: estancias largas en ciudades medianas"
+        texto: "Qué hace que alguien alargue el viaje y qué gana la ciudad cuando lo hace."
+        ponente: Clara Vives Roig
+        sala: Sala Mar
+        categoria: Ponencia
+        detalle: |
+          Esta ponencia parte de una observación sencilla: la ciudad mediana rara vez compite por el viaje de un fin de semana, pero sí puede ganar al visitante que decide quedarse unos días más. Clara Vives Roig reúne lo que ha visto en sus estudios sobre turismo urbano para explicar qué motivos alargan una estancia, desde la vida de barrio hasta la oferta cultural fuera de temporada.
+
+          La sesión repasa qué gana la ciudad cuando alguien se queda: más tiempo en comercios pequeños, menos presión sobre los puntos más fotografiados y una relación distinta con los vecinos. También habla de lo que puede salir mal si la estancia larga solo sirve para encarecer la vivienda.
+
+          Está pensada para técnicos de turismo, alojamientos y comercios que quieran diseñar propuestas para quien se queda, no solo para quien pasa. Acaba con un turno abierto de preguntas en la Sala Mar y queda a disposición de quien quiera seguir la conversación en el café de la pausa.
+      - dia: "Jueves 15"
+        hora: "12:30"
+        titulo: "Mesa redonda: barrios marineros, vecinos y alquiler turístico"
+        texto: "Tres municipios de la costa cuentan qué han probado y qué no ha funcionado."
+        ponente: "Jordi Ferrer, Marta Llorens y Ana Bosch"
+        sala: Sala Mar
+        categoria: Mesa redonda
+        detalle: |
+          Tres municipios de la costa se sientan en la misma mesa para contar, sin adornos, cómo han afrontado la llegada del alquiler turístico a sus barrios marineros. Jordi Ferrer, Marta Llorens y Ana Bosch explican qué medidas han probado, cuáles han dado resultado y cuáles tuvieron que corregir sobre la marcha.
+
+          El debate se ordena en torno a tres asuntos: cómo se escucha a los vecinos antes de decidir, qué margen real tiene un ayuntamiento pequeño y cómo se reparte el beneficio de una actividad que se nota en cada portal. No se trata de dar recetas cerradas, sino de poner sobre la mesa experiencias comparables.
+
+          La mesa está dirigida a cargos municipales, asociaciones vecinales y profesionales del alojamiento. Se celebra en la Sala Mar y deja tiempo para preguntas del público. Quien quiera continuar la conversación puede hacerlo después en la pausa, con el café a mano.
+      - dia: "Jueves 15"
+        hora: "16:00"
+        titulo: "Taller: cómo medir la huella de un evento"
+        texto: "Una hoja de cálculo sencilla para saber cuánto consume y cuánto deja tu evento."
+        ponente: Pau Castells
+        sala: Sala Taller 1
+        categoria: Taller
+        detalle: |
+          Un taller práctico para quien organiza actividades y se pregunta cuánto consume y cuánto deja su evento. Pau Castells guía al grupo en la construcción de una hoja de cálculo sencilla, sin programas especiales, que recoge lo esencial: desplazamientos, comida, materiales, residuos y alojamiento.
+
+          Durante la sesión se trabaja con el ejemplo de una jornada como esta. Cada participante rellena su propio caso, aprende a distinguir lo que se mide de lo que se estima y descubre dónde suele estar la parte más pesada de la huella, que casi nunca es la que se imagina al empezar.
+
+          El taller es para organizadores, personal de ayuntamientos, asociaciones y empresas de servicios. Conviene traer un portátil o una tablet. Las plazas son limitadas para poder atender a cada grupo, así que se recomienda reservar con el abono completo. Al terminar, cada persona se lleva la hoja preparada para usarla en su próximo evento.
       - { dia: "Jueves 15", hora: "18:30", titulo: Paseo guiado por la Part Alta al atardecer, texto: "Salida desde la puerta de la nave. Plazas limitadas.", ponente: Núria Domènech, sala: Salida en el vestíbulo, categoria: Visita }
-      - { dia: "Viernes 16", hora: "9:30", titulo: "Patrimonio romano y vida cotidiana: convivir con un museo al aire libre", texto: "Cómo se cuida un patrimonio que está en mitad de las calles, las tiendas y las casas.", ponente: Elena Puig Marsal, sala: Sala Mar, categoria: Ponencia }
-      - { dia: "Viernes 16", hora: "11:00", titulo: "Puertos que vuelven a la ciudad", texto: "Naves, tinglados y muelles reconvertidos en paseo, mercado y sala de cultura.", ponente: Iñaki Arrieta, sala: Sala Mar, categoria: Ponencia }
+      - dia: "Viernes 16"
+        hora: "9:30"
+        titulo: "Patrimonio romano y vida cotidiana: convivir con un museo al aire libre"
+        texto: "Cómo se cuida un patrimonio que está en mitad de las calles, las tiendas y las casas."
+        ponente: Elena Puig Marsal
+        sala: Sala Mar
+        categoria: Ponencia
+        detalle: |
+          Vivir al lado de restos romanos tiene algo de privilegio y algo de molestia. Elena Puig Marsal, arqueóloga y divulgadora, cuenta cómo se cuida un patrimonio que no está tras una vitrina, sino en mitad de las calles, las tiendas y las casas de una ciudad que sigue en marcha.
+
+          La ponencia recorre los conflictos habituales entre conservación y vida diaria: las obras que aparecen con una sorpresa bajo el suelo, los comercios que conviven con un muro antiguo y las visitas que pasan por portales donde hay vecinos. También muestra ejemplos en los que el patrimonio se ha convertido en un motivo de orgullo y en una razón para volver.
+
+          Está pensada para responsables de cultura, guías, comerciantes y cualquier persona interesada en que el turismo cuide lo que enseña. Se celebra el viernes por la mañana en la Sala Mar y admite preguntas del público al final de la intervención.
+      - dia: "Viernes 16"
+        hora: "11:00"
+        titulo: "Puertos que vuelven a la ciudad"
+        texto: "Naves, tinglados y muelles reconvertidos en paseo, mercado y sala de cultura."
+        ponente: Iñaki Arrieta
+        sala: Sala Mar
+        categoria: Ponencia
+        detalle: |
+          Durante décadas el puerto estuvo de espaldas a la ciudad. Iñaki Arrieta, arquitecto especializado en espacios portuarios, enseña cómo naves, tinglados y muelles se han reconvertido en paseo, mercado y sala de cultura sin perder el carácter que los hacía reconocibles.
+
+          La charla se apoya en proyectos reales de la costa y analiza qué decisiones marcaron la diferencia: conservar la estructura original, mantener la actividad pesquera cerca, abrir recorridos a pie y dejar espacios sin programar para que los vecinos los hagan suyos. También se habla de los errores, como los paseos demasiado pulidos que acaban sin vida.
+
+          La sesión interesa a técnicos de urbanismo, arquitectos, autoridades portuarias y asociaciones de barrio. Se celebra en la Sala Mar el viernes y concluye con un coloquio. Después, en la pausa, se puede seguir la conversación con degustación de producto de la lonja, a pocos pasos de donde se ha hablado.
       - { dia: "Viernes 16", hora: "12:00", titulo: Pausa y degustación de producto de la lonja, texto: "", ponente: "", sala: Terraza del muelle, categoria: Pausa }
       - { dia: "Viernes 16", hora: "12:45", titulo: "Mesa redonda: de la barca al plato", texto: "Cofradías, cocineros y mercados hablan de precio justo y de temporada.", ponente: "Rosa Mestres, Toni Sabaté y Laia Fort", sala: Sala Mar, categoria: Mesa redonda }
       - { dia: "Viernes 16", hora: "16:30", titulo: "Taller: rutas a pie que reparten visitantes", texto: "Diseñamos en grupos una ruta por barrios poco visitados.", ponente: Núria Domènech, sala: Sala Taller 2, categoria: Taller }
       - { dia: "Viernes 16", hora: "21:00", titulo: Cena de las jornadas en el Serrallo, texto: "Con reserva previa al inscribirte.", ponente: "", sala: Barrio del Serrallo, categoria: Visita }
-      - { dia: "Sábado 17", hora: "10:00", titulo: "Moverse sin coche por la costa", texto: "Tren, bicicleta y lanzadera: lo que funciona en verano y en invierno.", ponente: David Soler Ribas, sala: Sala Mar, categoria: Ponencia }
+      - dia: "Sábado 17"
+        hora: "10:00"
+        titulo: "Moverse sin coche por la costa"
+        texto: "Tren, bicicleta y lanzadera: lo que funciona en verano y en invierno."
+        ponente: David Soler Ribas
+        sala: Sala Mar
+        categoria: Ponencia
+        detalle: |
+          ¿Se puede recorrer la costa sin coche todo el año? David Soler Ribas, técnico de movilidad, responde con lo que funciona en verano y lo que se queda corto en invierno: tren, bicicleta y lanzaderas que conectan estaciones, playas, pueblos y alojamientos.
+
+          La ponencia describe cómo se combinan los distintos medios, qué horarios y frecuencias hacen que alguien deje el coche en casa y qué papel juegan la información clara y la señalización. Incluye ejemplos de lanzaderas organizadas por varios municipios a la vez y de rutas ciclistas que enlazan con la estación.
+
+          Es una sesión para técnicos de movilidad, empresas de transporte, alojamientos y organizadores de eventos que quieran reducir el tráfico de sus visitantes. Se celebra el sábado por la mañana en la Sala Mar y deja un rato final para preguntas. Quienes ya han probado alguna fórmula están invitados a contar su experiencia desde la sala.
       - { dia: "Sábado 17", hora: "11:30", titulo: Presentación de los grupos de trabajo, texto: "Conclusiones de los talleres y propuestas para el próximo año.", ponente: Grupos de trabajo, sala: Sala Mar, categoria: Mesa redonda }
       - { dia: "Sábado 17", hora: "13:00", titulo: Clausura y vermut en el muelle, texto: "", ponente: "", sala: Terraza del muelle, categoria: Pausa }
     cta: { texto: Reserva tu plaza, url: "/#entradas" }

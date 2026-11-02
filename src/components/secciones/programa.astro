@@ -2,12 +2,13 @@
 // Programa: banda noche con corte diagonal. `programa: [{dia, hora, titulo, texto, ponente, sala, categoria}]`
 // agrupado por `dia` (en el orden en que aparece) en pestañas; cada sesión es una fila a todo el ancho: hora en
 // monoespaciada rosa, título y texto, y a la derecha ponente, sala y la etiqueta de `categoria` (un color por
-// categoría). Sin JavaScript se ven todos los días seguidos. `cta` opcional al final. Sin sesiones no se pinta.
+// categoría). Las sesiones con `detalle` tienen página propia (/ponencias/<slug>/) y su título enlaza a ella. Sin JavaScript se ven todos los días seguidos. `cta` opcional al final. Sin sesiones no se pinta.
 import { seccion, cadena, agrupar, enlace } from '../../data/site';
 import type { Sesion } from '../../data/site';
 import Seccion from '../ui/Seccion.astro';
 import Titular from '../ui/Titular.astro';
 import Icono from '../ui/Icono.astro';
+import { enlaceDe } from '../../lib/paginas';
 interface Props { id: string }
 const { id } = Astro.props;
 const s = seccion(id);
@@ -40,11 +41,12 @@ const conPestanas = dias.length > 1;
             {d.grupo && <h3 class="programa-dia-titulo">{d.grupo}</h3>}
             <ol class="sesiones">
               {d.elementos.map((x) => (
-                <li>
+                <li class:list={{ 'sesion-con-ficha': !!enlaceDe(x) }}>
                   <span class="sesion-hora">{cadena(x.hora)}</span>
                   <div class="min-w-0">
-                    <H class="sesion-titulo">{x.titulo}</H>
+                    <H class="sesion-titulo">{enlaceDe(x) ? <a href={enlaceDe(x)} class="sesion-enlace">{x.titulo}</a> : x.titulo}</H>
                     {cadena(x.texto) && <p class="suave mt-2 max-w-[44rem]">{x.texto}</p>}
+                    {enlaceDe(x) && <span class="sesion-ver" aria-hidden="true">Ver la sesión <Icono nombre="flecha" tam={16} /></span>}
                   </div>
                   {(cadena(x.ponente) || cadena(x.sala) || cadena(x.categoria)) && (
                     <div class="sesion-meta">
