@@ -8,6 +8,7 @@ import { seccion, cadena, partes, enlace, fuera } from '../../data/site';
 import Seccion from '../ui/Seccion.astro';
 import Titular from '../ui/Titular.astro';
 import Icono from '../ui/Icono.astro';
+import { enlace } from '../../lib/multipagina';
 interface Props { id: string }
 const s = seccion(Astro.props.id);
 const entradas = (s?.entradas ?? []).filter((e) => cadena(e.nombre));
@@ -25,7 +26,7 @@ const columnas = entradas.length >= 4 ? 'acreditaciones--4' : entradas.length ==
         {entradas.map((e) => {
           const precio = cadena(e.precio);
           const incluye = partes(e.incluye);
-          const url = cadena(e.url) || cta?.url || '/#contacto';
+          const url = cadena(e.url) || cta?.url || enlace('/#contacto');
           const destacada = e.destacado === true;
           return (
             <li class:list={['acreditacion', destacada && 'acreditacion--destacada']}>

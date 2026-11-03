@@ -21,6 +21,7 @@ preguntas frecuentes, llamada a la acción y contacto con formulario.
   sistema a 900, monoespaciada para horas y antetítulos, botones en paralelogramo, fotos a sangre con bordes oblicuos,
   cabecera fija transparente sobre la portada, pie cobalto con el nombre gigante. Brief completo en `DISEÑO.md`.
 - SEO de base incluido (`src/lib/seo.ts`): canónica, og:image, JSON-LD del negocio y de las preguntas frecuentes,
+- Varias páginas (opcional, `paginas:` en la raíz de `site.yaml`): Inicio + una página por entrada (`{ ruta, titulo, secciones: "a; b" }`, hasta 6) con el menú hecho solo; reparto recomendado en `template.yaml → paginas`. Sin la clave, una sola página larga.
   `robots.txt`, `sitemap.xml` y `llms.txt`; `noindex` si `seo.indexable: false`.
 - Contenido editable en `site.yaml`; metadatos en `template.yaml`; reglas para el agente en `CLAUDE.md`; fotos a
   generar en `fotos.json`.
